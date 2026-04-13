@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #ededed;
+  --accent: #22d3ee;
+  --accent-dim: #0891b2;
+  --card: #111111;
+  --card-border: #222222;
+  --muted: #888888;
+  --code-bg: #1a1a1a;
+  --nav-bg: rgba(5, 5, 5, 0.8);
+  --section-alt: #0a0a0a;
+}
+
+[data-theme="light"] {
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+  --accent: #0891b2;
+  --accent-dim: #0e7490;
+  --card: #ffffff;
+  --card-border: #e5e5e5;
+  --muted: #6b7280;
+  --code-bg: #f3f4f6;
+  --nav-bg: rgba(250, 250, 250, 0.8);
+  --section-alt: #f3f4f6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-dim: var(--accent-dim);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-muted: var(--muted);
+  --color-code-bg: var(--code-bg);
+  --color-section-alt: var(--section-alt);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-dim);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* Glow effects */
+.glow-text {
+  text-shadow: 0 0 40px rgba(34, 211, 238, 0.15);
+}
+
+[data-theme="light"] .glow-text {
+  text-shadow: 0 0 40px rgba(8, 145, 178, 0.12);
+}
+
+.glow-box {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.05);
+}
+
+[data-theme="light"] .glow-box {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #22d3ee, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, #0891b2, #7c3aed, #db2777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

@@ -1,0 +1,49 @@
+# Arman Sheikh — Resume
+
+## Full-Stack Developer & SaaS Founder
+
+**Email:** thearmansheikh.co@gmail.com  
+**Location:** Aldershot, UK  
+**Portfolio:** https://thearmansheikh.co  
+
+---
+
+## Experience
+
+### Full-Stack Developer — Freelance (2023 – Present)
+- Building end-to-end web applications for clients — from e-commerce stores to AI-powered tools
+- Delivered 5+ production projects for international clients
+- Built PostFlow AI — an AI-powered social media scheduling tool
+- Developed e-commerce platforms with Stripe integration
+
+### Frontend Developer — Self-directed Projects (2022 – 2023)
+- Focused on mastering React, TypeScript, and modern CSS
+- Created MD Translator — a multi-language translation tool
+- Designed and launched personal portfolio website
+- Explored Framer Motion for advanced UI animations
+
+---
+
+## Education
+
+**Bachelor's in Computer Science** — Tribhuvan University (2020 – 2024)  
+Studied computer science fundamentals — algorithms, data structures, web development, and software engineering principles.
+
+---
+
+## Skills
+
+**Frontend:** React, Next.js, TypeScript, Tailwind CSS, HTML/CSS, JavaScript  
+**Backend:** Node.js, Express, REST APIs, PostgreSQL, MongoDB, Prisma  
+**Design:** Figma, UI/UX Design, Responsive Design, Prototyping  
+**Tools:** Git, VS Code, Vercel, Docker, Linux  
+
+---
+
+## Projects
+
+- **PostFlow AI** — AI-powered social media content scheduling tool (Next.js, AI/ML)
+- **MD Translator** — Multi-language translation tool (React, Translation API)
+- **Luminous Fashion Accessories** — E-commerce for handmade Nepali accessories (Next.js, Stripe)
+- **New Look Footwear** — Premium Nepali footwear e-commerce (React, Node.js, MongoDB)
+- **thearmansheikh.co** — Personal portfolio (Next.js, Framer Motion)
