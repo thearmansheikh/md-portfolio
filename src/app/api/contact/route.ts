@@ -24,33 +24,32 @@ export async function POST(req: NextRequest) {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      console.error("RESEND_API_KEY not configured.");
+    if (!apiKey || !apiKey.startsWith("re_")) {
+      console.error("RESEND_API_KEY is missing or invalid.");
       return NextResponse.json(
         { error: "Email service not configured." },
         { status: 500 }
       );
     }
 
-    const recipient = process.env.EMAIL_RECIPIENT || email;
-
-    const { error } = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>",
-      to: recipient,
+    // Send email
+    const { data, error } = await resend.emails.send({
+      from: `Portfolio Contact <onboarding@resend.dev>`,
+      to: process.env.EMAIL_RECIPIENT || "thearmansheikh.co@gmail.com",
       replyTo: email,
       subject: subject
         ? `[Portfolio] ${subject}`
         : `[Portfolio] Message from ${name}`,
       html: `
-        <div style="font-family:system-ui,sans-serif;max-width:500px;margin:auto;">
-          <h2 style="color:#22d3ee;">New Portfolio Message</h2>
-          <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:6px 0;font-weight:bold;color:#888;">Name</td><td style="padding:6px 0;">${name}</td></tr>
-            <tr><td style="padding:6px 0;font-weight:bold;color:#888;">Email</td><td style="padding:6px 0;">${email}</td></tr>
-            <tr><td style="padding:6px 0;font-weight:bold;color:#888;">Subject</td><td style="padding:6px 0;">${subject || "—"}</td></tr>
+        <div style="font-family:system-ui,sans-serif;max-width:500px;margin:auto;padding:20px;">
+          <h2 style="color:#22d3ee;margin-bottom:16px;">New Portfolio Message</h2>
+          <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+            <tr><td style="padding:8px 0;color:#888;font-weight:600;">Name</td><td style="padding:8px 0;">${name}</td></tr>
+            <tr><td style="padding:8px 0;color:#888;font-weight:600;">Email</td><td style="padding:8px 0;"><a href="mailto:${email}">${email}</a></td></tr>
+            <tr><td style="padding:8px 0;color:#888;font-weight:600;">Subject</td><td style="padding:8px 0;">${subject || "—"}</td></tr>
           </table>
-          <div style="margin-top:16px;padding:12px;background:#111;border-radius:8px;">
-            <p style="color:#ccc;white-space:pre-wrap;">${message}</p>
+          <div style="background:#f4f4f5;padding:12px;border-radius:8px;">
+            <p style="margin:0;color:#333;white-space:pre-wrap;line-height:1.5;">${message}</p>
           </div>
         </div>
       `,
@@ -58,21 +57,21 @@ export async function POST(req: NextRequest) {
     });
 
     if (error) {
-      console.error("Resend error:", error);
+      console.error("Resend API Error:", error);
       return NextResponse.json(
-        { error: "Failed to send message. Please try again later." },
+        { error: error.message || "Failed to send message." },
         { status: 500 }
       );
     }
 
     return NextResponse.json(
-      { message: "Message sent successfully." },
+      { message: "Message sent successfully.", id: data?.id },
       { status: 200 }
     );
-  } catch (error) {
-    console.error("Contact form error:", error);
+  } catch (err: any) {
+    console.error("Contact route error:", err);
     return NextResponse.json(
-      { error: "Failed to send message. Please try again later." },
+      { error: err.message || "Failed to send message. Please try again later." },
       { status: 500 }
     );
   }
