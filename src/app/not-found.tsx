@@ -17,18 +17,18 @@ export default function NotFound() {
         </p>
 
         <div className="flex items-center justify-center gap-4">
-          <Link
+          <a
             href="/"
             className="px-6 py-2.5 bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 rounded-lg text-sm font-medium hover:bg-cyan-500/20 transition-all"
           >
             ← Back to Home
-          </Link>
-          <Link
+          </a>
+          <a
             href="#contact"
             className="px-6 py-2.5 text-muted text-sm hover:text-cyan-400 transition-colors"
           >
             Contact Me
-          </Link>
+          </a>
         </div>
       </div>
     </div>

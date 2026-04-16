@@ -6,7 +6,7 @@ import { EXPERIENCE, EDUCATION } from "@/data";
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 px-6">
+    <section id="experience" className="py-24 px-6 bg-[var(--section-alt)]">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -27,47 +27,59 @@ export default function Experience() {
               Experience
             </h3>
 
-            <div className="relative border-l border-[var(--card-border)] ml-2 space-y-10">
+            <div className="space-y-6">
               {EXPERIENCE.map((exp, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 }}
-                  className="relative pl-8 group"
+                  className="group relative bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-6 hover:border-cyan-500/20 transition-all duration-300"
                 >
-                  {/* Timeline dot */}
-                  <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-cyan-500/50 border-2 border-[var(--background)] group-hover:bg-cyan-400 transition-colors" />
+                  <div className="flex items-start gap-4">
+                    {/* Timeline indicator */}
+                    <div className="flex flex-col items-center pt-1">
+                      <div className="w-3 h-3 rounded-full bg-cyan-500/60 border-2 border-[var(--card)] group-hover:bg-cyan-400 transition-colors" />
+                      {i < EXPERIENCE.length - 1 && (
+                        <div className="w-px h-full min-h-[40px] bg-[var(--card-border)]" />
+                      )}
+                    </div>
 
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <h4 className="text-base font-semibold text-foreground group-hover:text-cyan-400 transition-colors">
-                      {exp.role}
-                    </h4>
-                    <span className="text-muted text-sm">·</span>
-                    <span className="text-muted text-sm flex items-center gap-1">
-                      <Building2 size={12} />
-                      {exp.company}
-                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <h4 className="text-base font-semibold text-foreground group-hover:text-cyan-400 transition-colors">
+                          {exp.role}
+                        </h4>
+                        <span className="text-muted text-sm">·</span>
+                        <span className="text-muted text-sm flex items-center gap-1">
+                          <Building2 size={12} />
+                          {exp.company}
+                        </span>
+                      </div>
+
+                      <div className="text-xs font-mono text-cyan-400/70 flex items-center gap-1 mb-3">
+                        <Calendar size={12} />
+                        {exp.period}
+                      </div>
+
+                      <p className="text-muted text-sm leading-relaxed mb-4">
+                        {exp.description}
+                      </p>
+
+                      <ul className="space-y-2">
+                        {exp.highlights.map((h) => (
+                          <li
+                            key={h}
+                            className="text-sm text-muted flex items-start gap-2"
+                          >
+                            <span className="text-cyan-400 mt-1 text-xs flex-shrink-0">▹</span>
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-
-                  <div className="text-xs font-mono text-cyan-400/70 flex items-center gap-1 mb-3">
-                    <Calendar size={12} />
-                    {exp.period}
-                  </div>
-
-                  <p className="text-muted text-sm leading-relaxed mb-3">
-                    {exp.description}
-                  </p>
-
-                  <ul className="space-y-1.5">
-                    {exp.highlights.map((h) => (
-                      <li key={h} className="text-sm text-[#999] flex items-start gap-2">
-                        <span className="text-cyan-400 mt-1 text-xs">▹</span>
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
                 </motion.div>
               ))}
             </div>
@@ -80,35 +92,43 @@ export default function Experience() {
               Education
             </h3>
 
-            <div className="relative border-l border-[var(--card-border)] ml-2 space-y-8">
+            <div className="space-y-6">
               {EDUCATION.map((edu, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 }}
-                  className="relative pl-8 group"
+                  className="group relative bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-6 hover:border-cyan-500/20 transition-all duration-300"
                 >
-                  {/* Timeline dot */}
-                  <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-cyan-500/50 border-2 border-[var(--background)] group-hover:bg-cyan-400 transition-colors" />
+                  <div className="flex items-start gap-4">
+                    {/* Timeline indicator */}
+                    <div className="flex flex-col items-center pt-1">
+                      <div className="w-3 h-3 rounded-full bg-violet-500/60 border-2 border-[var(--card)] group-hover:bg-violet-400 transition-colors" />
+                    </div>
 
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <h4 className="text-base font-semibold text-foreground group-hover:text-cyan-400 transition-colors">
-                      {edu.degree}
-                    </h4>
-                    <span className="text-muted text-sm">·</span>
-                    <span className="text-muted text-sm">{edu.institution}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <h4 className="text-base font-semibold text-foreground group-hover:text-cyan-400 transition-colors">
+                          {edu.degree}
+                        </h4>
+                        <span className="text-muted text-sm">·</span>
+                        <span className="text-muted text-sm">
+                          {edu.institution}
+                        </span>
+                      </div>
+
+                      <div className="text-xs font-mono text-cyan-400/70 flex items-center gap-1 mb-3">
+                        <Calendar size={12} />
+                        {edu.period}
+                      </div>
+
+                      <p className="text-muted text-sm leading-relaxed">
+                        {edu.description}
+                      </p>
+                    </div>
                   </div>
-
-                  <div className="text-xs font-mono text-cyan-400/70 flex items-center gap-1 mb-3">
-                    <Calendar size={12} />
-                    {edu.period}
-                  </div>
-
-                  <p className="text-muted text-sm leading-relaxed">
-                    {edu.description}
-                  </p>
                 </motion.div>
               ))}
             </div>
