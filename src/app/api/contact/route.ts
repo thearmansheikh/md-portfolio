@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,27 +23,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const user = process.env.EMAIL_USER;
-    const pass = process.env.EMAIL_APP_PASSWORD;
-    const recipient = process.env.EMAIL_RECIPIENT || user;
-
-    if (!user || !pass) {
-      console.error("Email env vars not configured.");
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("RESEND_API_KEY not configured.");
       return NextResponse.json(
         { error: "Email service not configured." },
         { status: 500 }
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: { user, pass },
-    });
+    const recipient = process.env.EMAIL_RECIPIENT || email;
 
-    await transporter.sendMail({
-      from: `"Portfolio Contact" <${user}>`,
-      replyTo: email,
+    const { error } = await resend.emails.send({
+      from: "Portfolio Contact <onboarding@resend.dev>",
       to: recipient,
+      replyTo: email,
       subject: subject
         ? `[Portfolio] ${subject}`
         : `[Portfolio] Message from ${name}`,
@@ -60,6 +56,14 @@ export async function POST(req: NextRequest) {
       `,
       text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject || "—"}\n\n${message}`,
     });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return NextResponse.json(
+        { error: "Failed to send message. Please try again later." },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { message: "Message sent successfully." },
