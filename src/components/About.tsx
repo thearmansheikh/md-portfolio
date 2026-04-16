@@ -1,12 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User, MapPin, GraduationCap, Code } from "lucide-react";
+import { User, MapPin, Code } from "lucide-react";
 
 const details = [
   { icon: User, label: "Name", value: "Arman Sheikh" },
   { icon: MapPin, label: "Location", value: "Aldershot, UK" },
-  { icon: GraduationCap, label: "Education", value: "B.Tech in Computer Science" },
   { icon: Code, label: "Focus", value: "Full-Stack Development & UI/UX Design" },
 ];
 

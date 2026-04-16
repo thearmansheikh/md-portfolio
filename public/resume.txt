@@ -24,13 +24,6 @@
 
 ---
 
-## Education
-
-**Bachelor's in Computer Science** — Tribhuvan University (2020 – 2024)  
-Studied computer science fundamentals — algorithms, data structures, web development, and software engineering principles.
-
----
-
 ## Skills
 
 **Frontend:** React, Next.js, TypeScript, Tailwind CSS, HTML/CSS, JavaScript  

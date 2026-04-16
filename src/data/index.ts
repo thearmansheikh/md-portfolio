@@ -101,16 +101,6 @@ export const EXPERIENCE = [
   },
 ];
 
-export const EDUCATION = [
-  {
-    degree: "Bachelor's in Computer Science",
-    institution: "Tribhuvan University",
-    period: "2020 – 2024",
-    description:
-      "Studied computer science fundamentals — algorithms, data structures, web development, and software engineering principles.",
-  },
-];
-
 export const TESTIMONIALS = [
   {
     name: "Sarah Mitchell",
